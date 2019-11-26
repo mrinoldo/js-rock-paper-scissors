@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        function computerPlay(){            
+            let array = ["rock", "paper", "scissors"];
+            return array[getRandomInt(2)];
+        }
+
+        function playRound (playSelect, computerSelection){
+            // let playSelect = playerSelection.toLowerCase();
+            if (playSelect == computerSelection){
+                return 'Tie, throw again';
+            } else if ((playSelect == 'rock' && computerSelection == 'scissors') || (playSelect == 'paper' && computerSelection == 'rock') || (playSelect == 'scissors' && computerSelection == 'paper')  ){
+                return "Human";
+            } else {
+                return "Computer";
+            }
+        }
+
+        function playerInput(){
+            let playerSelection = prompt("Please enter rock, paper, or scissors to play");
+            let playerSelect = playerSelection.toLowerCase();
+            if (playerSelect == 'rock' || playerSelect =='paper' || playerSelect == 'scissors'){
+                return playerSelect;
+            } else {
+                playerInput();
+            }
+        }
+
+        function game(){
+            let humanWin = 0;
+            let compWin = 0;
+            let i = 0;
+
+            while ( i < 5){
+            let playerSelection = playerInput();
+            let computerSelection = computerPlay();
+            let winner = playRound(playerSelection, computerSelection);
+            if (winner == 'Human'){
+                humanWin++;
+                console.log(winner);
+                i++;
+            } else if (winner == 'Computer'){
+                compWin++;
+                console.log(winner)
+                i++
+            } else {
+                i;
+                }
+            }
+            if (humanWin > compWin){
+                console.log("Human won best of 5 with " + humanWin + " wins")
+            } else{
+                console.log("Computer won best of 5 with " + compWin + " wins")
+            }
+            
+        }
+        
+        game();
+
+    </script>
+    
+</body>
+</html>
